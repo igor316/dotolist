@@ -6,6 +6,9 @@ import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
 
+import router from '../router'
+import { createRouterPlugin } from './plugins'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -14,6 +17,7 @@ const store = new Vuex.Store({
   actions,
   mutations,
   getters,
+  plugins: [createRouterPlugin(router)],
 })
 
 if (module.hot) {
