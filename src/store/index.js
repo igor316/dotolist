@@ -1,23 +1,23 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 
-import modules from './modules'
+import modules, { LOGIN, TODOLIST, MAIN_LAYOUT } from './modules'
 import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
 
-import router from '../router'
 import { createRouterPlugin } from './plugins'
 
 Vue.use(Vuex)
 
+let router = null
+
 const store = new Vuex.Store({
   state: {},
-  modules,
   actions,
   mutations,
   getters,
-  plugins: [createRouterPlugin(router)],
+  plugins: [createRouterPlugin(() => router)],
 })
 
 if (module.hot) {
@@ -41,6 +41,18 @@ if (module.hot) {
 
 if (process.env.NODE_ENV === 'development') {
   window.store = store
+}
+
+export { LOGIN, TODOLIST, MAIN_LAYOUT }
+
+export function registerModule (moduleName) {
+  if (!store.state[moduleName]) {
+    store.registerModule(moduleName, modules[moduleName])
+  }
+}
+
+export function setRouter (r) {
+  router = r
 }
 
 export default store

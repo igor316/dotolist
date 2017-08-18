@@ -3,10 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store'
+import store, { setRouter } from './store'
 import { sync } from 'vuex-router-sync'
 
 sync(store, router)
+setRouter(router)
 
 Vue.config.productionTip = false
 
