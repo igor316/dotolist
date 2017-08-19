@@ -2,7 +2,7 @@
   <div class="container">
     <span>Item list</span>
     <ul>
-      <slot name="renderItem" v-for="item in items" :item="item">
+      <slot name="renderItem" v-for="(item, index) in items" :item="item" :index="index">
       </slot>
     </ul>
   </div>

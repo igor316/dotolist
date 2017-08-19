@@ -5,7 +5,7 @@
       <input v-model="password" type="password">
     </div>
     <div>
-      <button type="submit">Login</button>
+      <b-button type="submit" variant="primary">Login</b-button>
     </div>
   </form>
 </template>

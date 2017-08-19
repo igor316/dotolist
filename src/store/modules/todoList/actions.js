@@ -7,3 +7,16 @@ export async function loadItems ({ rootGetters, commit }) {
 
   commit('setItems', items)
 }
+
+export function addItem ({ getters, commit }) {
+  const text = getters.text
+
+  if (text) {
+    commit('addItem', { text, createdAt: new Date() })
+    commit('text', '')
+  }
+}
+
+export function removeItem ({ getters, commit }, index) {
+  commit('removeItem', index)
+}

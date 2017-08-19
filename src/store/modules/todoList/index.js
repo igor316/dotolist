@@ -7,5 +7,5 @@ export default {
   actions,
   mutations,
   getters,
-  state: { items: [] },
+  state: { items: [], text: '' },
 }

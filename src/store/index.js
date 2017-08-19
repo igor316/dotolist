@@ -2,9 +2,9 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 
 import modules, { LOGIN, TODOLIST, MAIN_LAYOUT } from './modules'
-import actions from './actions'
-import mutations from './mutations'
-import getters from './getters'
+import * as actions from './actions'
+import * as mutations from './mutations'
+import * as getters from './getters'
 
 import { createRouterPlugin } from './plugins'
 
