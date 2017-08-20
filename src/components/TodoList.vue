@@ -1,9 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="addItem">
-      <input v-model="text"/>
-      <b-button type="submit" variant="success">Add Item</b-button>
-    </form>
+    <create-todo-item-form @submit="addItem" />
     <div v-if="!items.length">No items</div>
     <list v-else :items="items">
       <template slot="renderItem" scope="props">
@@ -16,16 +13,11 @@
 <script>
 import List from './List'
 import ListItem from './List/ListItem'
+import CreateTodoItemForm from './CreateTodoItemForm'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters('todoList', ['items']),
-    text: {
-      get () { return this.$store.getters['todoList/text'] },
-      set (value) { this.$store.commit('todoList/text', value) },
-    },
-  },
+  computed: mapGetters('todoList', ['items']),
   methods: mapActions('todoList', ['loadItems', 'addItem', 'removeItem']),
   mounted () {
     this.loadItems()
@@ -33,6 +25,7 @@ export default {
   components: {
     List,
     ListItem,
+    CreateTodoItemForm,
   },
 }
 </script>

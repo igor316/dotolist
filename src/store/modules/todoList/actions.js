@@ -1,4 +1,5 @@
 import api from '../../../api'
+import { getValues, reset, focus } from '@/store/plugins/form'
 
 export async function loadItems ({ rootGetters, commit }) {
   const login = rootGetters['mainLayout/currentAccount'].login
@@ -9,11 +10,12 @@ export async function loadItems ({ rootGetters, commit }) {
 }
 
 export function addItem ({ getters, commit }) {
-  const text = getters.text
+  const text = getValues('createTodoItem').text
 
   if (text) {
     commit('addItem', { text, createdAt: new Date() })
-    commit('text', '')
+    reset('createTodoItem')
+    focus('createTodoItem', 'text')
   }
 }
 

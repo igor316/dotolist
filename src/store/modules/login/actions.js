@@ -1,8 +1,10 @@
 import api from '../../../api'
 import { DEFAULT_SET_LOCATION } from '../../constants'
+import { getValues } from '@/store/plugins/form'
 
-export async function doLogin ({ getters, dispatch, commit }) {
-  const res = await api.sessions.doLogin(getters.login, getters.password)
+export async function doLogin ({ dispatch, commit }) {
+  const values = getValues('login')
+  const res = await api.sessions.doLogin(values.login, values.password)
 
   localStorage.setItem('currentAccount', JSON.stringify(res))
 
