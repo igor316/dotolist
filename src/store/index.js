@@ -32,7 +32,7 @@ if (module.hot) {
   const dependencies = [
     { path: './actions', name: './actions', field: 'actions' },
     { path: './mutations', name: './mutations', field: 'mutations' },
-    { path: './modules', name: '././modules/*', field: 'modules' },
+    { path: './modules', name: './modules/*', field: 'modules' },
     { path: './getters', name: './getters', field: 'getters' },
   ]
 

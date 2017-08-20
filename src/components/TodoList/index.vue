@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import List from './List'
-import ListItem from './List/ListItem'
+import List from '../List'
+import ListItem from '../List/ListItem'
 import CreateTodoItemForm from './CreateTodoItemForm'
 import { mapGetters, mapActions } from 'vuex'
 

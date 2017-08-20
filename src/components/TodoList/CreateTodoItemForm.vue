@@ -11,7 +11,7 @@
 
 <script>
 import { createFormMixin } from '@/store/plugins/form'
-import CommonFormField from './CommonFormField'
+import CommonFormField from '../common/CommonFormField'
 
 const validate = values => {
   const errors = {}

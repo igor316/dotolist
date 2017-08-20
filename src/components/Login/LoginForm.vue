@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="doLogin">
+  <form @submit.prevent="() => $emit('submit')">
     <div>
       <form-field name="login">
         <template scope="formFieldProps">
@@ -19,9 +19,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import { createFormMixin } from '@/store/plugins/form'
-import CommonFormField from './CommonFormField'
+import CommonFormField from '../common/CommonFormField'
 
 const validate = values => {
   const errors = {}
@@ -50,6 +49,5 @@ const form = createFormMixin({
 export default {
   mixins: [form],
   components: { CommonFormField },
-  methods: mapActions('login', ['doLogin']),
 }
 </script>

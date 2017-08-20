@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import auth from './auth'
 
-import { registerModule, LOGIN, TODOLIST, MAIN_LAYOUT } from '../store'
+import { registerModule, LOGIN, TODOLIST, MAIN_LAYOUT } from '@/store'
 import MainLayout from '@/components/MainLayout'
 import TodoList from '@/components/TodoList'
 import Login from '@/components/Login'
@@ -30,6 +30,7 @@ const router = new Router({
     path: '/login',
     name: 'Login',
     component: createAsyncComponentRenderer(Login, LOGIN),
+    props: route => ({ redirect: route.query.redirect }),
   }],
 })
 
