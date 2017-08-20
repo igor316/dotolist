@@ -6,7 +6,11 @@ import * as actions from './actions'
 import * as mutations from './mutations'
 import * as getters from './getters'
 
-import { createRouterPlugin } from './plugins'
+import {
+  createRouterPlugin,
+  createFormPlugin,
+} from './plugins'
+import createLogger from 'vuex/dist/logger'
 
 Vue.use(Vuex)
 
@@ -17,7 +21,11 @@ const store = new Vuex.Store({
   actions,
   mutations,
   getters,
-  plugins: [createRouterPlugin(() => router)],
+  plugins: [
+    createRouterPlugin(() => router),
+    createFormPlugin(),
+    createLogger(),
+  ],
 })
 
 if (module.hot) {
