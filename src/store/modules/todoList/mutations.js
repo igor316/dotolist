@@ -6,6 +6,6 @@ export function addItem (state, item) {
   state.items.push(item)
 }
 
-export function removeItem (state, index) {
-  state.items.splice(index, 1)
+export function removeItem (state, key) {
+  state.items = state.items.filter(item => item.key !== key)
 }

@@ -1,7 +1,7 @@
 <template>
   <span v-if="!currentAccount"></span>
   <div v-else>
-    <span>This is a todo list of {{ currentAccount.login }} user</span>
+    <div class="text-center">This is a todo list of {{ currentAccount.email }} user</div>
     <router-view />
   </div>
 </template>

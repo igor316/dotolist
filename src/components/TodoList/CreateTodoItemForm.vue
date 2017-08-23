@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit(values => $emit('submit', values))">
+  <form @submit.prevent="handleSubmit(values => $emit('submit', values))" class="w-50-center">
     <form-field :name="'text'">
       <template scope="formFieldProps">
         <common-form-field type="text" :formFieldProps="formFieldProps" />

@@ -1,10 +1,13 @@
 <template>
   <div>
     <create-todo-item-form @submit="addItem" />
-    <div v-if="!items.length">No items</div>
+    <div v-if="!items.length" class="text-center">No items</div>
     <list v-else :items="items">
-      <template slot="renderItem" scope="props">
-        <list-item :item="props.item" :index="props.index" @remove="index => removeItem(index)" />
+      <template slot="renderItems" scope="props">
+        <list-item
+          :item="props.item"
+          @remove="removeItem(props.item.key)"
+        />
       </template>
     </list>
   </div>

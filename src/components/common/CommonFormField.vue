@@ -1,29 +1,45 @@
 <template>
-  <div>
+  <div class="form-group">
+    <label v-if="label" :for="`control-${formFieldProps.form}-${formFieldProps.fieldName}`">{{ label }}</label>
     <input
+      class="form-control"
       v-if="type === 'text'"
       v-model="value"
       @blur="formFieldProps.onBlur"
       @focus="formFieldProps.onFocus"
       v-focus.lazy="formFieldProps.meta.focus"
+      :aria-describedby="`tooltip-${formFieldProps.form}-${formFieldProps.fieldName}`"
+      :id="`control-${formFieldProps.form}-${formFieldProps.fieldName}`"
     />
     <input
+      class="form-control"
       v-else-if="type === 'password'"
       type="password"
       v-model="value"
       @blur="formFieldProps.onBlur"
       @focus="formFieldProps.onFocus"
       v-focus.lazy="formFieldProps.meta.focus"
+      :aria-describedby="`tooltip-${formFieldProps.form}-${formFieldProps.fieldName}`"
+      :id="`control-${formFieldProps.form}-${formFieldProps.fieldName}`"
     />
     <input
+      class="form-control"
       v-else-if="type === 'email'"
       type="email"
       v-model="value"
       @blur="formFieldProps.onBlur"
       @focus="formFieldProps.onFocus"
       v-focus.lazy="formFieldProps.meta.focus"
+      :aria-describedby="`tooltip-${formFieldProps.form}-${formFieldProps.fieldName}`"
+      :id="`control-${formFieldProps.form}-${formFieldProps.fieldName}`"
     />
-    <span v-if="formFieldProps.meta.error !== null">{{ formFieldProps.meta.error }}</span>
+    <small
+      v-if="formFieldProps.meta.error !== null"
+      :style="{ color: 'red !important' }"
+      class="form-text text-muted"
+      :id="`tooltip-${formFieldProps.form}-${formFieldProps.fieldName}`">
+        {{ formFieldProps.meta.error }}
+    </small>
   </div>
 </template>
 
@@ -38,6 +54,7 @@ export default {
         return !!value
       },
     },
+    label: { type: String },
   },
   computed: {
     value: {
