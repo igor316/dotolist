@@ -1,5 +1,5 @@
 <template>
-  <li class="list-item">
+  <div :style="{ display: 'flex' }">
     <div class="w-100 text-left">
       <div>{{ item.text }}</div>
       <div class="minified">(created at {{ createdAt }})</div>
@@ -9,7 +9,7 @@
         <icon name="remove"/>
       </b-button>
     </div>
-  </li>
+  </div>
 </template>
 
 <script>
@@ -25,20 +25,7 @@ export default {
 }
 </script>
 <style scoped>
-li {
-  padding: 10px 0 10px;
-  display: flex;
-}
-
-li + li {
-  border-top: 1px solid black;
-}
-
 .minified {
   font-size: 0.6em
-}
-
-.list-item {
-  transition: all .3s;
 }
 </style>
