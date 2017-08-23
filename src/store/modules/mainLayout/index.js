@@ -1,15 +1,15 @@
 import * as mutations from './mutations'
 import * as getters from './getters'
+import { currentAccount } from '@/api/sessions'
 
 const getCurrentAccount = () => {
-  const localAccount = localStorage.getItem('currentAccount')
+  const account = currentAccount()
 
-  if (!localAccount) return null
+  if (!account) return null
 
-  try {
-    return JSON.parse(localAccount)
-  } catch (e) {
-    return null
+  return {
+    email: account.email,
+    uid: account.uid,
   }
 }
 

@@ -1,11 +1,11 @@
 <template>
-  <li>
+  <li class="list-item">
     <div class="w-100 text-left">
       <div>{{ item.text }}</div>
       <div class="minified">(created at {{ createdAt }})</div>
     </div>
     <div>
-      <b-button size="sm" variant="danger" @click="$emit('remove', index)">
+      <b-button size="sm" variant="danger" @click="$emit('remove')">
         <icon name="remove"/>
       </b-button>
     </div>
@@ -16,7 +16,7 @@
 import moment from 'moment'
 
 export default {
-  props: ['item', 'index'],
+  props: ['item'],
   computed: {
     createdAt () {
       return moment.duration(moment().diff(moment(this.item.createdAt), 'minutes'), 'minutes').humanize()
@@ -36,5 +36,9 @@ li + li {
 
 .minified {
   font-size: 0.6em
+}
+
+.list-item {
+  transition: all .3s;
 }
 </style>

@@ -2,17 +2,27 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 
 import modules, { LOGIN, TODOLIST, MAIN_LAYOUT } from './modules'
+import { DEFAULT_SET_LOCATION } from './plugins/router'
 import * as actions from './actions'
 import * as mutations from './mutations'
 import * as getters from './getters'
+import firebase from '@/api/firebase'
 
 import {
   createRouterPlugin,
   createFormPlugin,
+  createFirebasePlugin,
 } from './plugins'
 import createLogger from 'vuex/dist/logger'
+import { createVuexLoader } from 'vuex-loading'
+
+const VuexLoading = createVuexLoader({
+  moduleName: 'loading',
+  componentName: 'v-loading',
+})
 
 Vue.use(Vuex)
+Vue.use(VuexLoading)
 
 let router = null
 
@@ -25,6 +35,22 @@ const store = new Vuex.Store({
     createRouterPlugin(() => router),
     createFormPlugin(),
     createLogger(),
+    createFirebasePlugin(firebase, {
+      authAction: 'login/accountVerified',
+      authArgs: user => ({
+        redirect: router.currentRoute.query.redirect || '/',
+        accountData: { email: user.email, uid: user.uid },
+      }),
+      onUnauth: () => {
+        if (router.currentRoute.name !== 'Login') {
+          store.dispatch(DEFAULT_SET_LOCATION, {
+            name: 'Login',
+            query: { redirect: router.currentRoute.fullPath },
+          })
+        }
+      },
+    }),
+    VuexLoading.Store,
   ],
 })
 

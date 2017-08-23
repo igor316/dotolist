@@ -6,6 +6,8 @@
       :onFocus="onFocus"
       :value="value"
       :meta="meta"
+      :fieldName="name"
+      :form="$parent.formName"
     />
   </div>
 </template>

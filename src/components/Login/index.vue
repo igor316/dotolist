@@ -1,5 +1,7 @@
 <template>
-  <login-form @submit="doLogin({ redirect })" />
+  <div>
+    <login-form @submit="({ mode }) => doLogin({ redirect, mode })" :initialValues="{ email: '', password: '' }" />
+  </div>
 </template>
 
 <script>

@@ -1,11 +1,3 @@
-export default () => () => {
-  const localAccount = localStorage.getItem('currentAccount')
+import { currentAccount } from '@/api/sessions'
 
-  if (!localAccount) return false
-
-  try {
-    return JSON.parse(localAccount)
-  } catch (e) {
-    return false
-  }
-}
+export default () => () => !!currentAccount()
